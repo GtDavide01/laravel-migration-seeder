@@ -12,6 +12,9 @@
 </head>
 
 <body>
+    <header class="d-flex justify-content-center align-items-center">
+        <h1>Laravel-Migration-Seeder</h1>
+    </header>
     <main>
         @yield('content')
     </main>
