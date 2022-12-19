@@ -10,7 +10,7 @@ class TrainController extends Controller
 {
     public function index()
     {
-        $trains = Train::all();
+        $trains = Train::all()->where('arrival_time', '2022-12-19 16:09:31');
         return view('home', compact('trains'));
     }
 }
