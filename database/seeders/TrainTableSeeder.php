@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Functions\Helpers;
 use App\Models\Train;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -28,6 +29,23 @@ class TrainTableSeeder extends Seeder
             $newTrain->in_time = $faker->numberBetween(0, 1);
             $newTrain->deleted = $faker->numberBetween(0, 1);
             $newTrain->save();
+        }
+        $trains = Helpers::getCsvData(__DIR__ . '/trains.csv');
+        foreach ($trains as $key => $train) {
+            // nell'indice 0 trovo l'intestazione della tabella, quindi non la includo
+            if ($key !== 0) {
+                $newTrain = new Train();
+                $newTrain->agency = $train[1];
+                $newTrain->departure_station = $train[2];
+                $newTrain->arrival_station = $train[2];
+                $newTrain->departure_time = $train[3];
+                $newTrain->arrival_time = $train[4];
+                $newTrain->train_code = $train[5];
+                $newTrain->number_of_carriages = $train[6];
+                $newTrain->in_time = $train[7];
+                $newTrain->deleted = $train[8];
+                $newTrain->save();
+            }
         }
     }
 }
